@@ -144,22 +144,48 @@
     </div>
 </section>
 
-<section id="contact" class="py-24 max-w-5xl mx-auto px-6">
-    <div class="bg-white rounded-3xl overflow-hidden grid md:grid-cols-2 border border-stone-100 shadow-2xl">
-        <div class="bg-turmexa-gold p-12 text-white">
-            <h2 class="text-3xl font-bold mb-6 italic">“We respond within 24 hours”</h2>
-            <div class="space-y-4 font-medium opacity-90">
-                <p>WhatsApp: +62 8xx xxxx xxxx</p>
-                <p>Email: trade@turmexa.com</p>
-                <p>Form Inquiry Below ↓</p>
+<section id="contact" class="py-24 bg-stone-50">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-16">
+            <span class="text-turmexa-gold font-bold tracking-[0.3em] uppercase text-xs mb-4 block">The People Behind Turmexa</span>
+            <h2 class="text-3xl md:text-4xl font-bold italic tracking-tighter text-turmexa-dark">Our Leadership Team</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-white p-8 rounded-[2.5rem] shadow-sm border border-stone-100 hover:border-turmexa-gold transition-all group">
+                <div class="aspect-square bg-stone-200 rounded-3xl mb-6 overflow-hidden relative">
+                    <div class="absolute inset-0 flex items-center justify-center text-stone-400 text-xs font-bold uppercase italic">Photo: Eko</div>
+                </div>
+                <h3 class="text-xl font-bold text-turmexa-dark">Eko</h3>
+                <p class="text-turmexa-gold font-bold text-xs uppercase tracking-widest mb-4">Chief Executive Officer</p>
+                <p class="text-stone-500 text-sm leading-relaxed italic mb-6">"Driving Turmexa's global vision and ensuring excellence in every export partnership."</p>
+                <a href="{{ route('contact') }}" class="inline-block text-xs font-bold border-b-2 border-turmexa-gold pb-1 hover:text-turmexa-gold transition">Connect with Eko →</a>
+            </div>
+
+            <div class="bg-white p-8 rounded-[2.5rem] shadow-sm border border-stone-100 hover:border-turmexa-gold transition-all group">
+                <div class="aspect-square bg-stone-200 rounded-3xl mb-6 overflow-hidden relative">
+                    <div class="absolute inset-0 flex items-center justify-center text-stone-400 text-xs font-bold uppercase italic">Photo: Epen</div>
+                </div>
+                <h3 class="text-xl font-bold text-turmexa-dark">Epen</h3>
+                <p class="text-turmexa-gold font-bold text-xs uppercase tracking-widest mb-4">Founder</p>
+                <p class="text-stone-500 text-sm leading-relaxed italic mb-6">"Committed to empowering local farmers and bringing Indonesia's finest spices to the world."</p>
+                <a href="{{ route('contact') }}" class="inline-block text-xs font-bold border-b-2 border-turmexa-gold pb-1 hover:text-turmexa-gold transition">Connect with Epen →</a>
+            </div>
+
+            <div class="bg-white p-8 rounded-[2.5rem] shadow-sm border border-stone-100 hover:border-turmexa-gold transition-all group">
+                <div class="aspect-square bg-stone-200 rounded-3xl mb-6 overflow-hidden relative">
+                    <div class="absolute inset-0 flex items-center justify-center text-stone-400 text-xs font-bold uppercase italic">Photo: Samid</div>
+                </div>
+                <h3 class="text-xl font-bold text-turmexa-dark">Samid</h3>
+                <p class="text-turmexa-gold font-bold text-xs uppercase tracking-widest mb-4">Co-Founder</p>
+                <p class="text-stone-500 text-sm leading-relaxed italic mb-6">"Overseeing high-quality sourcing and ensuring consistent supply for our global clients."</p>
+                <a href="{{ route('contact') }}" class="inline-block text-xs font-bold border-b-2 border-turmexa-gold pb-1 hover:text-turmexa-gold transition">Connect with Samid →</a>
             </div>
         </div>
-        <form class="p-12 space-y-4">
-            <input type="text" placeholder="Full Name" class="w-full border-b py-3 focus:border-turmexa-gold outline-none">
-            <input type="email" placeholder="Business Email" class="w-full border-b py-3 focus:border-turmexa-gold outline-none">
-            <textarea placeholder="Your Requirement" rows="4" class="w-full border-b py-3 focus:border-turmexa-gold outline-none"></textarea>
-            <button class="w-full bg-turmexa-dark text-white py-4 rounded-xl font-bold uppercase tracking-widest text-sm mt-4">Send Inquiry</button>
-        </form>
+
+        <div class="mt-16 text-center">
+            <a href="{{ route('about') }}" class="bg-turmexa-dark text-white px-10 py-4 rounded-full font-bold hover:bg-black transition-all">Learn More About Us</a>
+        </div>
     </div>
 </section>
 
