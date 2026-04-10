@@ -1,0 +1,8 @@
+@import "tailwindcss";
+
+@theme {
+  --color-turmexa-dark: #1A1A1A;
+  --color-turmexa-gold: #E28743;
+  --color-turmexa-amber: #F2A65A;
+  --color-turmexa-light: #F9F7F2;
+}
