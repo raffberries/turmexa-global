@@ -21,7 +21,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        if (env('VERCEL_URL')) {
+        $this->app['url']->forceRootUrl('https://' . env('VERCEL_URL'));
+    }
     }
     
 }
