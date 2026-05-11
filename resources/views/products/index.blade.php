@@ -1,96 +1,115 @@
 @extends('layouts.app')
-
 @section('content')
-<section class="py-16 md:py-24 bg-white">
-    <div class="max-w-7xl mx-auto px-6">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
-            
-            <div x-data="{ active: 0, images: {{ json_encode($turmericImages) }} }" class="space-y-4">
-                <div class="relative aspect-square bg-stone-100 rounded-[2.5rem] overflow-hidden border border-stone-100 shadow-inner">
-                    <template x-for="(img, index) in images">
-                        <div x-show="active === index" x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 scale-95" class="absolute inset-0 flex items-center justify-center text-stone-400 italic">
-                            <div class="text-center">
-                                <p class="mb-2 uppercase tracking-tighter font-bold text-turmexa-gold" x-text="img.title"></p>
-                                <p class="text-xs">[ Space for Product / Certificate Photo ]</p>
+
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+<div class="min-h-screen overflow-x-hidden" x-data="{ search: '' }">
+    
+    <!-- SECTION 01: FLAGSHIP SELECTION (Dark Background Highlight) -->
+    <section class="bg-turmexa-dark pt-40 pb-32">
+        <div class="max-w-[1400px] mx-auto px-6">
+            <div class="flex flex-col lg:flex-row justify-between items-end mb-32 gap-12" data-aos="fade-up" data-aos-duration="600">
+                <div class="max-w-3xl">
+                    <span class="text-xs font-black uppercase tracking-[0.4em] text-turmexa-gold mb-6 block">Section 01</span>
+                    <h1 class="text-7xl md:text-9xl font-black italic tracking-tighter leading-[0.75] text-white uppercase">
+                        Flagship<br><span class="text-turmexa-gold ml-20">Selection.</span>
+                    </h1>
+                </div>
+            </div>
+
+            <div class="space-y-40" x-show="search === ''">
+                @foreach(collect($products)->where('hero', true) as $p)
+                <div class="relative group" data-aos="fade-up" data-aos-duration="700" data-aos-mirror="true">
+                    <a href="{{ route('products.show', $p['slug']) }}" class="block text-white">
+                        <div class="aspect-[21/9] overflow-hidden rounded-[4rem] bg-stone-800 mb-12 shadow-2xl">
+                            <img src="/assets/products/{{ $p['images'][0] }}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-80 group-hover:opacity-100">
+                        </div>
+                        <div class="flex flex-col lg:flex-row justify-between items-start gap-12 px-10 text-white">
+                            <h2 class="text-5xl md:text-7xl font-black italic leading-none uppercase">{{ $p['name'] }}</h2>
+                            <div class="lg:w-1/3 pt-4 border-t border-white/10 lg:border-t-0 lg:border-l lg:pl-12 text-stone-400">
+                                <p class="text-lg italic mb-8 leading-relaxed">{{ $p['desc'] }}</p>
+                                <div class="bg-turmexa-gold text-turmexa-dark text-center py-5 rounded-[2rem] font-black uppercase text-xs tracking-widest transition-all group-hover:bg-white">
+                                    View Details →
+                                </div>
                             </div>
                         </div>
-                    </template>
-
-                    <div class="absolute inset-y-0 w-full flex justify-between items-center px-4 pointer-events-none">
-                        <button @click="active = active === 0 ? images.length - 1 : active - 1" class="pointer-events-auto w-10 h-10 bg-white/80 backdrop-blur rounded-full flex items-center justify-center shadow-lg hover:bg-turmexa-gold hover:text-white transition">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                        </button>
-                        <button @click="active = active === images.length - 1 ? 0 : active + 1" class="pointer-events-auto w-10 h-10 bg-white/80 backdrop-blur rounded-full flex items-center justify-center shadow-lg hover:bg-turmexa-gold hover:text-white transition">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="flex gap-4 justify-center">
-                    <template x-for="(img, index) in images">
-                        <button @click="active = index" :class="active === index ? 'border-turmexa-gold ring-2 ring-turmexa-gold/20' : 'border-transparent'" class="w-20 h-20 bg-stone-100 rounded-xl border-2 transition overflow-hidden flex items-center justify-center text-[8px] text-stone-400">
-                            Photo
-                        </button>
-                    </template>
-                </div>
-            </div>
-
-            <div class="flex flex-col justify-center space-y-8">
-                <div>
-                    <span class="text-turmexa-gold font-bold tracking-[0.3em] uppercase text-xs mb-4 block">Primary Commodity</span>
-                    <h1 class="text-4xl md:text-5xl font-bold text-turmexa-dark leading-tight italic">Premium Turmeric Powder</h1>
-                </div>
-
-                <p class="text-stone-600 leading-relaxed italic border-l-4 border-turmexa-gold pl-6">
-                    Our turmeric powder is meticulously processed from high-quality Javanese turmeric fingers, ensuring a vibrant natural orange hue and a high curcumin level (>4%) that satisfies the demanding standards of the global market.
-                </p>
-
-                <div class="grid grid-cols-2 gap-y-6 gap-x-12 pt-6 border-t border-stone-100">
-                    <div>
-                        <p class="text-[10px] uppercase text-stone-400 font-bold mb-1">Curcumin Content</p>
-                        <p class="text-xl font-bold text-turmexa-dark">> 4.0%</p>
-                    </div>
-                    <div>
-                        <p class="text-[10px] uppercase text-stone-400 font-bold mb-1">Moisture</p>
-                        <p class="text-xl font-bold text-turmexa-dark">< 10%</p>
-                    </div>
-                    <div>
-                        <p class="text-[10px] uppercase text-stone-400 font-bold mb-1">Mesh Size</p>
-                        <p class="text-xl font-bold text-turmexa-dark italic">40 - 80 Mesh</p>
-                    </div>
-                    <div>
-                        <p class="text-[10px] uppercase text-stone-400 font-bold mb-1">SGS Indonesia</p>
-                        <p class="text-xl font-bold text-green-600 underline decoration-2">Verified COA</p>
-                    </div>
-                </div>
-
-                <div class="pt-8">
-                    <a href="{{ route('contact') }}" class="inline-flex bg-turmexa-dark text-white px-10 py-4 rounded-2xl font-bold hover:bg-black transition-all shadow-xl shadow-stone-200">
-                        Inquire for Shipment
                     </a>
                 </div>
+                @endforeach
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<section class="py-24 bg-stone-50">
-    <div class="max-w-7xl mx-auto px-6 text-center mb-16">
-        <h2 class="text-2xl font-bold uppercase tracking-widest text-stone-400">Secondary Spices Collection</h2>
-        <div class="w-20 h-1 bg-turmexa-gold mx-auto mt-4 rounded-full"></div>
-    </div>
-
-    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        @foreach($otherSpices as $spice)
-        <div class="bg-white p-8 rounded-3xl border border-stone-100 hover:border-turmexa-gold/30 hover:shadow-xl transition-all group">
-            <div class="w-12 h-12 bg-turmexa-light rounded-2xl flex items-center justify-center text-turmexa-gold font-bold mb-6 group-hover:bg-turmexa-gold group-hover:text-white transition">
-                +
+    <!-- SECTION 02: CATEGORIZED COLLECTION (Light Background) -->
+    <section class="bg-white py-40">
+        <div class="max-w-[1400px] mx-auto px-6">
+            
+            <div class="flex flex-col lg:flex-row justify-between items-baseline mb-32 gap-12" data-aos="fade-up" data-aos-duration="600">
+                <h3 class="text-xs font-black uppercase tracking-[0.5em] text-stone-300">Section 02 — Product Categories</h3>
+                <div class="w-full lg:w-96">
+                    <input x-model="search" type="text" placeholder="Quick search..." 
+                           class="w-full bg-transparent border-b-2 border-stone-100 py-6 focus:border-turmexa-gold outline-none font-bold text-2xl transition-all text-turmexa-dark placeholder:text-stone-200">
+                </div>
             </div>
-            <h3 class="text-xl font-bold mb-3">{{ $spice['name'] }}</h3>
-            <p class="text-sm text-stone-500 mb-6 italic">{{ $spice['desc'] }}</p>
-            <p class="text-[10px] font-bold text-stone-300 uppercase tracking-widest italic border-t pt-4">Available Upon Request</p>
+
+            @php
+                $categories = [
+                    'The Chili Series' => ['CHL-A30', 'CHL-XHT', 'CHL-FLK'],
+                    'The Pepper Collection' => ['BPP', 'WPP'],
+                    'The Allium Base' => ['GRL', 'ONN'],
+                    'Herbal & Roots' => ['GNG', 'CUR', 'LMN', 'GLG', 'MRG'],
+                    'Aromatic Spices' => ['CLV', 'NTM', 'CRD', 'CNN', 'STA'],
+                    'Seeds & Others' => ['CRN', 'CND', 'CMN', 'PPR', 'TMR']
+                ];
+            @endphp
+
+            @foreach($categories as $catName => $codes)
+                @php $categoryProducts = collect($products)->whereIn('code', $codes); @endphp
+
+                @if($categoryProducts->count() > 0)
+                <div class="mb-48" x-show="search === ''" data-aos="fade-up" data-aos-duration="700">
+                    <div class="flex items-center gap-6 mb-16 px-4">
+                        <h4 class="text-3xl font-black italic text-turmexa-dark uppercase tracking-tighter">{{ $catName }}</h4>
+                        <div class="flex-1 h-[1px] bg-stone-100"></div>
+                        <span class="text-[10px] font-bold text-stone-300 uppercase tracking-widest">{{ $categoryProducts->count() }} Items</span>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-32">
+                        @foreach($categoryProducts as $p)
+                        <div class="group" data-aos="fade-up" data-aos-duration="600" data-aos-mirror="true">
+                            <a href="{{ route('products.show', $p['slug']) }}" class="block">
+                                <div class="aspect-[16/10] overflow-hidden rounded-[3.5rem] bg-stone-50 mb-8 shadow-sm transition-all group-hover:shadow-xl">
+                                    <img src="/assets/products/{{ $p['images'][0] }}" class="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 group-hover:scale-110 transition-all duration-500">
+                                </div>
+                                <div class="px-6">
+                                    <div class="mb-6">
+                                        <span class="text-[9px] font-black text-turmexa-gold tracking-[0.2em] uppercase">{{ $p['code'] }}</span>
+                                        <h5 class="text-3xl font-black italic text-turmexa-dark mt-1 leading-none uppercase">{{ $p['name'] }}</h5>
+                                    </div>
+                                    <div class="w-full bg-stone-100 text-turmexa-dark group-hover:bg-turmexa-dark group-hover:text-white text-center py-5 rounded-[2rem] font-black uppercase text-[10px] tracking-widest transition-all">
+                                        View Details
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
+                @endif
+            @endforeach
         </div>
-        @endforeach
-    </div>
-</section>
+    </section>
+</div>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        AOS.init({ 
+            duration: 700, 
+            mirror: true, 
+            once: false,
+            easing: 'ease-out-quad' 
+        });
+    });
+</script>
 @endsection

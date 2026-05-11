@@ -54,7 +54,7 @@
                     <div class="space-y-10">
                         <div>
                             <p class="text-xs text-stone-500 uppercase tracking-widest mb-2">Main Headquarters</p>
-                            <p class="text-xl italic leading-relaxed">Semarang, Central Java,<br>Indonesia</p>
+                            <p class="text-xl italic leading-relaxed">South Tangerang, Banten, <br>Indonesia</p>
                         </div>
                         
                         <div>
@@ -64,7 +64,7 @@
 
                         <div class="pt-10 border-t border-stone-800">
                             <p class="text-stone-400 text-sm italic italic leading-relaxed">
-                                Our facility is strategically located near Tanjung Emas Port, ensuring efficient international shipping for your orders.
+                                Our facility is strategically located near Tanjung Perak Port, ensuring efficient international shipping for your orders.
                             </p>
                         </div>
                     </div>
