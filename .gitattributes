@@ -9,3 +9,7 @@
 /.github export-ignore
 CHANGELOG.md export-ignore
 .styleci.yml export-ignore
+
+/tests export-ignore
+/node_modules export-ignore
+/vendor export-ignore
