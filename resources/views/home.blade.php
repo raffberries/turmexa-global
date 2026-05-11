@@ -30,18 +30,22 @@
   .label { font-size:.62rem; font-weight:800; letter-spacing:.3em; text-transform:uppercase; }
   .label-line::before { content:''; display:inline-block; width:22px; height:1px; background:var(--gold); vertical-align:middle; margin-right:.7rem; }
 
-  /* ==============================
-     HERO SECTION (OVERHAUL)
-     ============================== */
-  .hero { 
-    position:relative; 
-    min-height: 100vh; /* Full Height */
-    background:var(--dark); 
-    overflow:hidden; 
-    padding-top:8rem; /* Space for Nav */
-    display:flex; 
-    align-items: center; /* Center Content Vertically */
-  }
+/*Hero Section*/
+.hero { 
+  position:relative; 
+  min-height: 100vh; 
+  background:var(--dark); 
+  overflow:hidden; 
+  display:flex; 
+  align-items: center; /* Memastikan konten berada di tengah vertikal */
+  padding-top: 4rem;   /* Memberikan ruang untuk header yang fixed */
+}
+
+.hero-content { 
+  position: relative; 
+  z-index: 11; 
+  margin-top: -3rem;   /* Penyesuaian optik agar teks tidak terlihat terlalu "turun" */
+}
   
   /* Background Elements */
   .hero-lines { position:absolute; inset:0; background:repeating-linear-gradient(90deg,rgba(201,168,76,.03) 0 1px,transparent 1px 120px); pointer-events:none; z-index: 1; }
@@ -292,9 +296,11 @@
       </h1>
       <p class="hero-body">Turmexa Global sources premium Indonesian commodities with care and consistency, so every buyer receives products worth trusting.</p>
       <div class="hero-actions">
-        <a href="{{ route('products') }}" class="btn-primary">Explore Catalogue</a>
-        <a href="#contact" class="btn-ghost">Request a Quote</a>
-      </div>
+    <a href="{{ asset('assets/pdf/turmexa-catalogue.pdf') }}" download class="btn-primary">
+        Download Catalogue
+    </a>
+    <a href="#contact" class="btn-ghost">Request a Quote</a>
+    </div>
     </div>
 
     {{-- Right: Visual Floating Products (No Grid/Box) --}}
@@ -406,30 +412,19 @@
       <div class="label label-line" style="color:var(--gold)">Get In Touch</div>
       <h2 class="contact-headline">Ready to<br><em>source</em> with us?</h2>
     </div>
-    <form class="contact-form" data-aos="fade-left" action="{{ route('inquiry.store') }}" method="POST">
-      @csrf
-      <div class="form-row">
-        <input type="text" name="name" placeholder="Full Name" class="field" required>
-        <input type="email" name="email" placeholder="Email Address" class="field" required>
-      </div>
-      <textarea name="message" placeholder="Tell us about your requirements…" class="field" required></textarea>
-      <button type="submit" class="form-submit">Send Inquiry →</button>
+    <form id="whatsappForm" class="contact-form" data-aos="fade-left">
+        <div class="form-row">
+            <input type="text" id="name" placeholder="Full Name" class="field" required>
+            <input type="email" id="email" placeholder="Email Address" class="field" required>
+        </div>
+        <textarea id="message" placeholder="Tell us about your requirements (Product, Mesh, Quantity, etc)..." class="field" required></textarea>
+        
+        <button type="button" onclick="sendToWhatsApp()" class="form-submit">
+            Send Inquiry via WhatsApp →
+        </button>
     </form>
   </div>
 </section>
-
-{{-- ── FOOTER ── --}}
-<footer>
-  <div class="footer-inner">
-    <div class="footer-logo">TURMEXA<span>.</span></div>
-    <ul class="footer-nav">
-      <li><a href="#about">About</a></li>
-      <li><a href="{{ route('products') }}">Catalogue</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </div>
-  <div class="footer-copy">© 2026 Turmexa Global Group</div>
-</footer>
 
 </div>
 

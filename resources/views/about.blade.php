@@ -12,34 +12,18 @@
     </div>
 </section>
 
-<section class="py-16 bg-stone-50" x-data="{ active: 0, total: 3 }">
-    <div class="max-w-6xl mx-auto px-6">
-        <h2 class="text-center text-2xl font-bold mb-10 uppercase tracking-widest text-stone-400">Documentation</h2>
+<section class="py-20 bg-white">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+        <span class="text-turmexa-gold font-black uppercase tracking-[0.4em] text-[10px] mb-4 block">Information</span>
+        <h2 class="text-4xl font-black italic uppercase tracking-tighter mb-8">Want to know more about us?</h2>
         
-        <div class="relative group">
-            <div class="aspect-video bg-stone-200 rounded-[2.5rem] overflow-hidden shadow-2xl relative border-8 border-white">
-                <template x-for="i in total">
-                    <div x-show="active === i-1" x-transition.opacity.duration.500ms class="absolute inset-0 flex items-center justify-center text-stone-400 italic">
-                        <span>[ Documentation Photo <span x-text="i"></span> ]</span>
-                    </div>
-                </template>
-
-                <div class="absolute inset-0 flex justify-between items-center px-6 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <button @click="active = active === 0 ? total - 1 : active - 1" class="w-12 h-12 bg-white/90 rounded-full shadow-lg flex items-center justify-center hover:bg-turmexa-gold hover:text-white transition">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    </button>
-                    <button @click="active = active === total - 1 ? 0 : active + 1" class="w-12 h-12 bg-white/90 rounded-full shadow-lg flex items-center justify-center hover:bg-turmexa-gold hover:text-white transition">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    </button>
-                </div>
-            </div>
-
-            <div class="flex justify-center gap-2 mt-6">
-                <template x-for="i in total">
-                    <button @click="active = i-1" :class="active === i-1 ? 'bg-turmexa-gold w-8' : 'bg-stone-300 w-2'" class="h-2 rounded-full transition-all duration-300"></button>
-                </template>
-            </div>
-        </div>
+        <a href="{{ asset('assets/pdf/turmexa-company-profile.pdf') }}" download 
+           class="inline-flex items-center bg-turmexa-dark text-white px-10 py-4 rounded-full text-xs font-black uppercase tracking-[0.2em] hover:bg-turmexa-gold transition-all shadow-xl group">
+            <span class="mr-3">Download Company Profile</span>
+            <svg class="w-4 h-4 transition-transform group-hover:translate-y-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+            </svg>
+        </a>
     </div>
 </section>
 
